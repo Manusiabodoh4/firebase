@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "radiant-pilot-296407",
+  "private_key_id": "58ade1fc8d94b6d5a63e2f8e96fda664e3e1b877",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDhefHOng0lHlm2\nPxZKkDh7P8PBQUsgHKzygbwvnba5Z08Kv1mzmS5OKlNtg/UVbvzs25nGSbs5XTmy\nBCZFqi1lUfJLKvgMoVjKPbFKqrqvYkfpX6A/558Jel/BKxAJtz+e3igGRCW0Celw\ncPPLSX22JNDQe0IGKQDkLt5rFth63CNdq0JZGnaA1Vs0Db1vtmNbrGZfDj1kuIVH\nnAIPJhoTGLZR0vppMhUYUskKAcACzOvtfVeNjhOBm4rEKs203Mam4GFvPVr1RDWv\nYuSpXPVq85I7Vg0O8Knm7aYil1JkddjInVFOzJv54mstCvJaagj4uxqDLRixrg66\nVL3Ak/8BAgMBAAECggEAAv+5N0ijih6DjkimhkAG0EotKLEyoO8LXypZ6L7jQvIH\nJhscw/vB7D4539dad3ouGQRkC4ly2QokDfm/fJENNi9x1o1wFn2Vjb27pu+VuLwe\nPWdih+xlEXOJjysrH8X1LarCGNs9LnjXRwHpltxCX3LRPYSg1djObzqEW3jxUNOo\nVNUctDhfnQlEQs6DiXscRgQk+OxTCr/hQnSFun7JPLzfEk6EDX3DTFSQ7lpjZEfg\ndFm9QO87zulvQor0N+YVI90/BD0O9IYCkAZen46C5YRQ2y8Uoh9ahOjlsZZ8v92L\n+Q3HgWld6itY6V6NpWVFcDEobYTO32JBNebnmSGVcQKBgQD94khCAO573S5zM3q7\n6J7R+rqL1ArpyqCs183iibW6f1ta47USKqF0E5NQAAHaA/6sAMc13KUOvU+SpaGV\nEz1N2MmYwqWQa9T++aksTgCnxsoIeyQ89vZ6NWsZdDZ4BpxDNrJ/IOs5qzX/rVPJ\nQPKfM5Bmz8ckxY6/o/iitCwwbQKBgQDjWwxmpZXas9cVA2Gpt0NNTaJdaT/WRbql\nI2lua7ydlnLp6l8AOh2pghh7aY0K5tcKTvFgovazqmF0v5x6qDEIb2hE3FgzBIA4\n84SqYRjRNMqRC0zJxMTXBP3R8o8oMFa+aY8Gf3dEGHWr/4etFE1dyeL1F8VillPN\nhh/AlNH0ZQKBgBkWXyWGigpbVNe1Yo9m8Sq2p/BhR6LKjw4FVSbpjLedFh3pGl9t\nLv8VYB0rowM0GdpNSWIdJ4JJWq+XBlyAxjIHFgSuV0XqIeYALaNfIdlyX0xvPql3\njeuNk8O0JB3AKXjK0uCVFClirbdSHVFpxY/NvJssNPWBQBXX0h3hx+wRAoGASWLA\nM/nKzxcxm6TFx2RSIwemGwS4CE/lmRw/EddQwIUpfnuaQpZ/sJE/mcZOMnCkhL1K\niGjRvNiIMIkQ1z6m5RQg0elVxtHzGW7xKZXBzvV9VSgSlyYea1E/JJ9oug4wUbH8\n6poGQ0Kp6OTIRIPDHTznNzl/Cv1++14Jrb3br0kCgYEAvC0Df2sxQlhdRKQdkg0t\nvsOYGxwVa0LJ03gFVw6hc705oekeeWuawyEq/DXmyHB4noCUH4gioXACL76LBpTs\n1NQ9OOI5Ps3mQlKk7DMOqVnyJo70btaTtjsFSkO9FPRAeSLpZCoEEcojfKB6WqCC\na3NVxI1Ym4A1RguBVn+Dtwo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-2rhnp@radiant-pilot-296407.iam.gserviceaccount.com",
+  "client_id": "101325829805251832188",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2rhnp%40radiant-pilot-296407.iam.gserviceaccount.com"
+}
