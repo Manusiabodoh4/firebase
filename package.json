@@ -1,0 +1,27 @@
+{
+  "name": "firebase",
+  "version": "1.0.0",
+  "description": "This repo just for fun",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ghp_OgytfYw4c3YeqsGUiWTh7cZizGXwWmS020zZU@github.com/Manusiabodoh4/firebase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manusiabodoh4/firebase/issues"
+  },
+  "homepage": "https://github.com/Manusiabodoh4/firebase#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase": "^9.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
