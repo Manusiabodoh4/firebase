@@ -1,26 +1,46 @@
+//import { collection, addDoc } from "firebase/firestore";
+const { doc, setDoc, getDoc } = require("firebase/firestore")
 const connection = require("./connection")
 
-let coll = null;
+function getCollection(){
+    return "Karyawan"
+}
 
-function getCollectionKaryawan(){
-    if(coll === null){
-        coll = connection.getDatabase().collection("Karyawan")                
+async function registerKaryawan(email, name, position){
+    const docKaryawan = doc(connection.getConnection(), getCollection(), email)
+    const objData = {
+        name : name,
+        jabatan : position
     }
-    return coll
-}
-
-async function registerKaryawan(email, name, jabatan){
-
-    const res = await getCollectionKaryawan().doc(email).set({
-        name,
-        jabatan
-    })
-    
-    console.log("Document save with Email", email)
-    console.log(res)
-
+    try {
+        await setDoc(docKaryawan, objData)           
+    } catch (error) {
+        console.log(error)
+        return false
+    }    
     return true
+}
+
+async function checkKaryawan(email){
+    
+    const docKaryawan = doc(connection.getConnection(), getCollection(), email)
+
+    const data = await getDoc(docKaryawan)
+    
+    const objResponse = {
+        status : false,
+        data : null        
+    }
+
+    if(!data.exists()){
+        return objResponse;
+    }
+
+    objResponse.status = true
+    objResponse.data = data.data()
+
+    return objResponse
 
 }
 
-module.exports = {registerKaryawan}
+module.exports = { registerKaryawan, checkKaryawan }

@@ -1,12 +1,14 @@
-const { getFirestore } = require('firebase-admin/firestore');
+//import { getFirestore } from "firebase/firestore"
+const { getFirestore } = require("firebase/firestore")
 
-let database = null;
+let connection = null
 
-function getDatabase(){
-    if(database === null){
-        database = getFirestore();
+function getConnection(){
+    if(connection === null){
+        connection = getFirestore();
     }
-    return database;
+    return connection
 }
 
-module.exports = {getDatabase}
+module.exports = {getConnection}
+
