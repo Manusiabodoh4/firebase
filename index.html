@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script  src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+        <script  src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css" />
+        <title>Login</title>
+    </head>
+
+    <body>
+        <h1>Welcome to My Awesome App</h1>        
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+    </body>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBaskRF6NUizTPQLodjbANAG5GgvaAtxWs",  
+            authDomain: "radiant-pilot-296407.firebaseapp.com",  
+            projectId: "radiant-pilot-296407",  
+            storageBucket: "radiant-pilot-296407.appspot.com",  
+            messagingSenderId: "82993979501",
+            appId: "1:82993979501:web:2ffbd46340d63a05485f64",  
+            measurementId: "G-PSTH06M08X" 
+        };
+  
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);        
+      </script>
+
+    <script type="text/javascript" >               
+
+        const ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+        var uiConfig = {
+        callbacks: {
+            signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+            // User successfully signed in.
+            // Return type determines whether we continue the redirect automatically
+            // or whether we leave that to developer to handle.
+            console.log("Behasil Login")
+            return false;
+            },
+            uiShown: function() {
+            // The widget is rendered.
+            // Hide the loader.
+            document.getElementById('loader').style.display = 'none';
+            }
+        },
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInSuccessUrl: 'http://127.0.0.1:4000/',
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,            
+        ],
+        // Terms of service url.
+        tosUrl: 'http://127.0.0.1:4000/',
+        // Privacy policy url.
+        privacyPolicyUrl: 'http://127.0.0.1:4000/'
+        };
+
+        ui.start('#firebaseui-auth-container', uiConfig);        
+
+    </script>
+
+</html>

@@ -1,11 +1,16 @@
 const express  = require('express');
 const app = express();
+const path = require('path');
 
 require("./helper/firebase")
 require("./event/eventTamu")
 
 const modelKaryawan = require("./model/karyawan")
 const modelTamu = require("./model/tamu")
+
+app.get("/html/login", (req, res)=>{
+    res.sendFile(path.join(__dirname, '/index.html'));
+})
 
 app.post("/api/karyawan/add", express.json(),  async (req, res)=>{
 
