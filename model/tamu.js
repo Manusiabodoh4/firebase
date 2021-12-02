@@ -1,5 +1,5 @@
 //import { collection, addDoc } from "firebase/firestore";
-const { doc, setDoc, getDoc } = require("firebase/firestore")
+const { addDoc, collection, query, where, getDocs } = require("firebase/firestore")
 const connection = require("./connection")
 
 function getCollection(){
@@ -7,13 +7,14 @@ function getCollection(){
 }
 
 async function registerTamu(email, tangal, emailKaryawan){
-    const docTamu = doc(connection.getConnection(), getCollection(), email)
+    const collectionTamu = collection(connection.getConnection(), getCollection())
     const objData = {
+        email,
         tangal,
         emailKaryawan
     }
     try {
-        await setDoc(docTamu, objData)           
+        await addDoc(collectionTamu, objData)           
     } catch (error) {
         console.log(error)
         return false
@@ -23,23 +24,31 @@ async function registerTamu(email, tangal, emailKaryawan){
 
 async function checkTamu(email){
     
-    const docTamu = doc(connection.getConnection(), getCollection(), email)
+    const collectionTamu = collection(connection.getConnection(), getCollection())
+    const q = query(collectionTamu, where("email", "==", email))
 
-    const data = await getDoc(docTamu)
+    const data = await getDocs(q)
     
     const objResponse = {
         status : false,
         data : null        
     }
 
-    if(!data.exists()){
+    if(data.size === 0){
         return objResponse;
     }
 
-    objResponse.status = true
-    objResponse.data = data.data()
+    const arr = [];
+
+    data.forEach(item => {
+        arr.push(item.data())
+    })
+
+    objResponse.status = true;
+    objResponse.data = arr;
 
     return objResponse
+    
 
 }
 

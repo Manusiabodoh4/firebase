@@ -2,6 +2,7 @@ const express  = require('express');
 const app = express();
 
 require("./helper/firebase")
+require("./event/eventTamu")
 
 const modelKaryawan = require("./model/karyawan")
 const modelTamu = require("./model/tamu")
