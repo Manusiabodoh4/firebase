@@ -2,13 +2,13 @@ const express  = require('express');
 const app = express();
 const path = require('path');
 
-require("./helper/firebase")
+const firebase = require("./helper/firebase")
 require("./event/eventTamu")
 
 const modelKaryawan = require("./model/karyawan")
-const modelTamu = require("./model/tamu")
+const modelTamu = require("./model/tamu")(firebase)
 
-app.get("/html/home", (_, res)=>{
+app.get("/html/home", (_, res)=>{        
     res.sendFile(path.join(__dirname, '/view/index.html'));
 })
 
@@ -39,7 +39,7 @@ app.get("/api/karyawan/:email", async (req, res)=>{
 
     const {email} = req.params
 
-    const resCheck = await modelTamu.checkKaryawan(email)
+    const resCheck = await modelKaryawan.checkKaryawan(email)
 
     if(resCheck.status){
         res.status(200).json({
