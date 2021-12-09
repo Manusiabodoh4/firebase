@@ -56,7 +56,7 @@ app.get("/api/karyawan/:email", async (req, res)=>{
 
 })
 
-app.post("/api/tamu/add", express.json(),  async (req, res)=>{
+app.post("/api/tamu/add", express.json(),  async (req, res)=>{    
 
     const {email, tanggal, emailKaryawan} = req.body;
 
@@ -66,6 +66,8 @@ app.post("/api/tamu/add", express.json(),  async (req, res)=>{
         res.status(404).json({message:`Karyawan dengan email ${emailKaryawan} tidak ditemukan`})    
         return
     }
+
+    console.log("Masuk ke sini")
 
     const resRegister = await modelTamu.registerTamu(email, tanggal, emailKaryawan)    
 

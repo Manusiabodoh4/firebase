@@ -8,7 +8,8 @@ const firebaseConfig = {
     storageBucket: "radiant-pilot-296407.appspot.com",  
     messagingSenderId: "82993979501",
     appId: "1:82993979501:web:2ffbd46340d63a05485f64",  
-    measurementId: "G-PSTH06M08X" 
+    measurementId: "G-PSTH06M08X" ,
+    databaseURL:"https://radiant-pilot-296407-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 const app = initializeApp(firebaseConfig);

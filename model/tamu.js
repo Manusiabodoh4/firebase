@@ -1,27 +1,31 @@
 //import { collection, addDoc } from "firebase/firestore";
 const { addDoc, collection, query, where, getDocs } = require("firebase/firestore")
+const { ref, set } = require("firebase/database");
+const { v4: uuidv4 } = require('uuid');
+
 const connection = require("./connection")
 
 module.exports = (firebase) => {      
 
-  const getCollection = () => {
-      return "Tamu"
+  const getCollection = (id) => {
+    return "Tamu/"+id
   }
 
   const registerTamu = async (email, tangal, emailKaryawan) => {
-      const collectionTamu = collection(connection.getConnection(), getCollection())
-      const objData = {
-          email,
-          tangal,
-          emailKaryawan
-      }
-      try {
-          await addDoc(collectionTamu, objData)           
-      } catch (error) {
-          console.log(error)
-          return false
-      }    
-      return true
+    // console.log(firebase)
+    const id = uuidv4()
+    const collectionTamu = ref(connection.getConnectionRealtime(firebase), getCollection(id))
+    const objData = {
+        email,
+        tangal,
+        emailKaryawan
+    }
+    try {
+      await set(collectionTamu, objData)          
+    } catch (error) {
+      return false
+    }
+    return true
   }
   
   const checkTamu = async (email) => {

@@ -22,8 +22,12 @@ async function registerKaryawan(email, name, position){
 }
 
 async function checkKaryawan(email){
+
+    // console.log(connection.getConnection())
+
+    // console.log(email)
     
-    const docKaryawan = doc(connection.getConnection(), getCollection(), email)
+    const docKaryawan = doc(connection.getConnection(), getCollection(), email)    
 
     const data = await getDoc(docKaryawan)
     
