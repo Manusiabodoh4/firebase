@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>                        
+        <title>Login - Book Reservation</title>
+    </head>
+
+    <body> 
+        
+        <nav class="flex items-center bg-gray-800 p-3 flex-wrap">
+            <a href="#" class="p-2 mr-4 inline-flex items-center">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="fill-current text-white h-8 w-8 mr-2"
+              >
+                <path
+                  d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
+                />
+              </svg>
+              <span class="text-xl text-white font-bold uppercase tracking-wide"
+                >Book Reservation</span
+              >
+            </a>
+            <button
+              class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+              data-target="#navigation"
+            >
+              <i class="material-icons">menu</i>
+            </button>
+            <div
+              class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
+              id="navigation"
+            >
+              <div id="navigation"
+                class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
+              >
+                <!-- <a
+                  href="/html/home/"
+                  class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                  >
+                  <span>HOME</span>
+                </a>
+                <a
+                  href="/html/login/"
+                  class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                >
+                  <span>LOGIN</span>
+                </a>
+                <a
+                  href="/html/register/"
+                  class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                >
+                  <span>REGISTER</span>
+                </a>                 -->
+              </div>
+            </div>
+        </nav>
+
+        <section class="flex justify-center items-center h-screen bg-gray-100">
+          <div class="max-w-md w-full bg-white rounded p-6 space-y-4">
+              <div onclick="atClickTesting()" class="mb-4">
+                  <p class="text-gray-600">Sign In</p>
+                  <h2 class="text-xl font-bold">Join our application</h2>
+              </div>
+              <div>
+                  <input id="email" class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600" type="text" placeholder="Email">
+              </div>
+              <div>
+                  <input id="password" class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600" type="password" placeholder="Password">
+              </div>
+              <div>
+                  <button onclick="atClickLogin()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200">Sign In</button>
+              </div>
+              <div class="flex items-center justify-between">
+                  <div class="flex flex-row items-center">
+                      <input type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                      <label for="comments" class="ml-2 text-sm font-normal text-gray-600">Remember me</label>
+                  </div>
+                  <div>
+                      <a class="text-sm text-blue-600 hover:underline" href="/html/forgot/">Forgot password?</a>
+                  </div>
+              </div>
+          </div>
+        </section>
+
+    </body>
+
+    <script>
+
+        window.addEventListener("DOMContentLoaded", ()=>{
+          
+            const firebaseConfig = {
+                apiKey: "AIzaSyBaskRF6NUizTPQLodjbANAG5GgvaAtxWs",  
+                authDomain: "radiant-pilot-296407.firebaseapp.com",  
+                projectId: "radiant-pilot-296407",  
+                storageBucket: "radiant-pilot-296407.appspot.com",  
+                messagingSenderId: "82993979501",
+                appId: "1:82993979501:web:2ffbd46340d63a05485f64",  
+                measurementId: "G-PSTH06M08X" 
+            };
+  
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);                            
+
+            firebase.auth().onAuthStateChanged((user) => {
+              if (user) {                
+                document.getElementById("navigation").insertAdjacentHTML("afterend", 
+                `
+                  <a
+                    href="/html/home/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                    >
+                    <span>HOME</span>
+                  </a>                
+                `)                
+              } else {                                
+                document.getElementById("navigation").insertAdjacentHTML("afterend", 
+                `
+                  <a
+                    href="/html/home/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                    >
+                    <span>HOME</span>
+                  </a>
+                  <a
+                    href="/html/login/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                  >
+                    <span>LOGIN</span>
+                  </a>
+                  <a
+                    href="/html/register/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                  >
+                    <span>REGISTER</span>
+                  </a> 
+                `)
+              }
+            });
+            
+
+        })                  
+
+    </script>    
+
+    <script type="text/javascript">
+
+      function moveToHome(){
+        window.location.href = "http://127.0.0.1:4000/html/home/"
+      }
+
+      function atClickTesting(){
+        const user = firebase.auth().currentUser;
+        if (user !== null) {
+          console.log(user)
+          console.log(user.emailVerified)
+        }
+      }
+
+      function atClickLogin(){
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {                    
+          console.log(userCredential)
+          alert("Berhasil Login")
+          moveToHome()
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(`${errorCode}:${errorMessage}`)
+        });
+      }
+
+    </script>
+
+</html>

@@ -8,8 +8,16 @@ require("./event/eventTamu")
 const modelKaryawan = require("./model/karyawan")
 const modelTamu = require("./model/tamu")
 
-app.get("/html/login", (req, res)=>{
-    res.sendFile(path.join(__dirname, '/index.html'));
+app.get("/html/home", (_, res)=>{
+    res.sendFile(path.join(__dirname, '/view/index.html'));
+})
+
+app.get("/html/login", (_, res)=>{
+    res.sendFile(path.join(__dirname, '/view/login.html'));
+})
+
+app.get("/html/register", (_, res)=>{
+    res.sendFile(path.join(__dirname, '/view/register.html'));
 })
 
 app.post("/api/karyawan/add", express.json(),  async (req, res)=>{

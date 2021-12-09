@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>                        
+        <title>Home - Book Reservation</title>
+    </head>
+
+    <body> 
+        
+        <nav class="flex items-center bg-gray-800 p-3 flex-wrap">
+            <a href="#" class="p-2 mr-4 inline-flex items-center">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="fill-current text-white h-8 w-8 mr-2"
+              >
+                <path
+                  d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
+                />
+              </svg>
+              <span class="text-xl text-white font-bold uppercase tracking-wide"
+                >Book Reservation</span
+              >
+            </a>
+            <button
+              class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+              data-target="#navigation"
+            >
+              <i class="material-icons">menu</i>
+            </button>
+            <div
+              class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
+              id="navigation"
+            >
+              <div
+                class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
+              >
+                <!-- <a
+                  href="/html/home/"
+                  class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                  >
+                  <span>HOME</span>
+                </a>
+                <a
+                  href="/html/login/"
+                  class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                >
+                  <span>LOGIN</span>
+                </a>
+                <a
+                  href="/html/register/"
+                  class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                >
+                  <span>REGISTER</span>
+                </a>                 -->
+              </div>
+            </div>
+        </nav>
+
+        <div class="container mx-auto">
+          <div class="md:flex space-x-16 mt-20 md:mr-0 mr-10">
+            
+            <div class="md:flex items-center pl-16 ">
+              
+              <div class="">
+              
+                <h class="lg:text-5xl  font-bold leading-tight text-3xl">Temukan Kemudahan Bersama Kami, BOOK RESERVATION</h1>
+              
+                  <p class="mt-4 text-lg font-normal ">Build your site in a few second based ready-to-use block and section, <br> it's a lot of fund.</p>
+              
+                <div class="mt-10">
+                  <button onclick="moveToRegister()" class="py-3 px-6 bg-indigo-600 text-lg text-md text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
+                    Register Now
+                  </button>             
+                </div>
+
+              </div>
+
+            </div>            
+
+            <div class="max-w-lg pr-24 md:flex justify-center items-center  hidden">
+              <img class="rounded-lg" src="https://images.unsplash.com/photo-1483058712412-4245e9b90334" alt="">
+            </div>
+
+          </div>
+
+        </div>
+
+    </body>
+
+    <script>
+
+        window.addEventListener("DOMContentLoaded", ()=>{
+          
+            const firebaseConfig = {
+                apiKey: "AIzaSyBaskRF6NUizTPQLodjbANAG5GgvaAtxWs",  
+                authDomain: "radiant-pilot-296407.firebaseapp.com",  
+                projectId: "radiant-pilot-296407",  
+                storageBucket: "radiant-pilot-296407.appspot.com",  
+                messagingSenderId: "82993979501",
+                appId: "1:82993979501:web:2ffbd46340d63a05485f64",  
+                measurementId: "G-PSTH06M08X" 
+            };
+  
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);                
+
+            firebase.auth().onAuthStateChanged((user) => {
+              const navigation = document.getElementById("navigation")
+              if (user) {                                
+                navigation.insertAdjacentHTML("afterend", 
+                `
+                  <a
+                    href="/html/home/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                    >
+                    <span>HOME</span>
+                  </a> 
+                  <button   
+                    onclick="logoutEvent()"                 
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                    >
+                    <span>LOGOUT</span>
+                  </button>                
+                `)                
+              } else {                                                
+                navigation.insertAdjacentHTML("afterend", 
+                `
+                  <a
+                    href="/html/home/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                    >
+                    <span>HOME</span>
+                  </a>
+                  <a
+                    href="/html/login/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                  >
+                    <span>LOGIN</span>
+                  </a>
+                  <a
+                    href="/html/register/"
+                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                  >
+                    <span>REGISTER</span>
+                  </a> 
+                `)
+              }
+            });
+
+        })                          
+
+    </script>        
+
+    <script type="text/javascript">
+
+      function logoutEvent(){
+        firebase.auth().signOut().then(() => {
+          alert("Berhasil Logout")
+          window.location.reload();
+        }).catch((error) => {
+          console.log(error)
+        });
+      }
+
+      function moveToRegister(){        
+        window.location.replace("http://127.0.0.1:4000/html/register")
+      }
+
+    </script>
+
+</html>

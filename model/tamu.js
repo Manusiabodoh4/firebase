@@ -52,4 +52,4 @@ async function checkTamu(email){
 
 }
 
-module.exports = { registerTamu, checkTamu }
+module.exports = { registerTamu, checkTamu };
